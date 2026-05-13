@@ -1,1 +1,5 @@
-Login URL: envurl
+export const environment = {
+  production: true,
+  apiUrl: '',
+  loginUrl: ''
+};
