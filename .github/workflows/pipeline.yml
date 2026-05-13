@@ -1,23 +1,24 @@
-    jobs:
-    build:
+    name: Node.js CI
+
+on: push
+
+jobs:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Use Node.js 
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20.x
-        cache: 'npm'
-
-    -name: npm install - modules
-    - run: npm install
-
-   - name: angular build
-    - run: npm run build --if-present
-
-    -name: Angular e2e test
-    run: npm test
-
-    -name: Docker build image
-    run: docker build -t gov/app:latest .
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: Install Dependencies
+        run: npm ci
+        
+      - name: Build Angular App
+        run: npm run build
+        
+      - name: Build Docker Image
+        run: docker build -t gov:latest .
