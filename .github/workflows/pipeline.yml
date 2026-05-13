@@ -12,7 +12,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20  # ← ఇక్కడ 18 ని 20 చెయ్
           
       - name: Install Dependencies
         run: npm install
